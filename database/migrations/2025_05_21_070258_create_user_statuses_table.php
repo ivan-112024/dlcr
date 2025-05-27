@@ -8,7 +8,7 @@ return new class extends Migration {
     {
         Schema::create('user_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('status_name');
+          $table->string('name'); // Changed from status_name to name
             $table->timestamps();
         });
     }

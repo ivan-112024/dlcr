@@ -3,10 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\User;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TripProcessingController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ReportingController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\TripsController;
@@ -15,7 +15,6 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-
     // User routes
     Route::get('/get-users', [UserController::class, 'getUsers']);
     Route::post('/add-user', [UserController::class, 'addUser']);
@@ -28,12 +27,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/edit-driver/{id}', [DriverController::class, 'editDriver']);
     Route::delete('/delete-driver/{id}', [DriverController::class, 'deleteDriver']);
 
-    // Trips routes
-    Route::get('/trips', [TripsController::class, 'index']);
-    Route::post('/trips', [TripsController::class, 'store']);
-    Route::get('/trips/{trip}', [TripsController::class, 'show']);
-    Route::put('/trips/{trip}', [TripsController::class, 'update']);
-    Route::delete('/trips/{trip}', [TripsController::class, 'destroy']);
+  // Reservation routes
+Route::get('/reservations', [ReservationController::class, 'index']);
+Route::post('/reservations', [ReservationController::class, 'store']);
+Route::get('/reservations/{id}', [ReservationController::class, 'show']); // Note: using {reservation} for route model binding
+Route::put('/reservations/{id}', [ReservationController::class, 'update']);
+Route::delete('/reservations/{id}', [ReservationController::class, 'destroy']);
 
     // Nested    routes under Trips
     Route::prefix('trips/{trip}')->group(function () {

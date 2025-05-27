@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB; // Ensure DB facade is imported
 
 return new class extends Migration {
     public function up(): void
@@ -13,8 +13,8 @@ return new class extends Migration {
         ]);
 
         DB::table('user_statuses')->insert([
-            ['id' => 1, 'status_name' => 'Active', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 2, 'status_name' => 'Inactive', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 1, 'name' => 'Active', 'created_at' => now(), 'updated_at' => now()], // <-- CHANGE 'status_name' to 'name' here
+            ['id' => 2, 'name' => 'Inactive', 'created_at' => now(), 'updated_at' => now()], // <-- CHANGE 'status_name' to 'name' here
         ]);
     }
 
